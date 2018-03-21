@@ -34,6 +34,10 @@
             <%= f.input :address, as: :text, label: t(".address"),
               input_html: {class: "input-text long-input"} %>
           </div>
+          <div class="group-fields checkboxs-schedules">
+            <%= f.label t".time_schedules", html_options: {class: "abc"} %>
+            <%= f.collection_check_boxes :periods, Period.all.map{|p| [p.id, "#{p.start_time.strftime('%I:%M%p')} - #{p.end_time.strftime('%I:%M%p')}"]}, :first, :last, include_hidden: false, class: "checkbox_time" %>
+          </div>
           <%= f.submit t(".submit"), class: "btn-submit" %>
         <% end %>
       </div>
