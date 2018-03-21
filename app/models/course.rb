@@ -4,6 +4,8 @@ class Course < ApplicationRecord
   has_many :course_schedules, dependent: :destroy
   has_many :registrations, through: :course_schedules
   has_many :temporary_registrations, dependent: :destroy
+  has_many :course_periods, dependent: :destroy
+  has_many :periods, through: :course_periods
   has_one :avatar, class_name: Image.name, foreign_key: :id, primary_key: :avatar_id
   has_one :cover, class_name: Image.name, foreign_key: :id, primary_key: :cover_id
   has_one :newest_schedule,
