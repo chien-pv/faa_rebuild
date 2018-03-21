@@ -257,6 +257,7 @@ vi:
       address: "Địa chỉ"
       submit: "Đăng ký"
       duration: "Thời gian học"
+      time_schedules: "Thời gian bạn có thể học !"
     create:
       success: "Đăng ký khóa học thành công"
       fail: "Đăng ký khóa học thất bại"

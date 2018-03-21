@@ -24,7 +24,7 @@ class TemporaryRegistrationsController < ApplicationController
 
   def registration_params
     params.require(:temporary_registration).permit :course_id, :name,
-      :email, :address, :phone
+      :email, :address, :phone, periods: []
   end
 
   def find_course
