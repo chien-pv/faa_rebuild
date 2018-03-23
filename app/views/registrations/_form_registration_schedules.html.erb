@@ -6,19 +6,23 @@
     </div>
     <div class="modal-body">
       <div class="intro-box">
-        <h3><%= temporary_registration.course.name %></h3>
+        <h3><%= registration.course_schedule.course.name %></h3>
         <label><%= t ".duration" %></label>
         <p>
-          <%= t "courses.course_header.condition" %>
+          <%= load_schedule_time_inline registration.course_schedule.day1,
+            registration.course_schedule.start_time1, registration.course_schedule.end_time1 %>,
+          <%= load_schedule_time_inline registration.course_schedule.day2,
+            registration.course_schedule.start_time2, registration.course_schedule.end_time2 %>,
+          <%= load_schedule_time_inline registration.course_schedule.day3,
+            registration.course_schedule.start_time3, registration.course_schedule.end_time3 %>
         </p>
-        <b><%= number_of_temporary_registration temporary_registration.course %></b>
+        <span><%= load_register_time registration.course_schedule %></span>
       </div>
 
       <div class="registration-form">
-        <%= simple_form_for temporary_registration, remote: true do |f| %>
-          <%= hidden_field_tag :course, @course.slug %>
-          <%= f.input :course_id, as: :hidden,
-            input_html: {value: temporary_registration.course_id} %>
+        <%= simple_form_for registration, remote: true do |f| %>
+          <%= f.input :course_schedule_id, as: :hidden,
+            input_html: {value: registration.course_schedule.id} %>
           <div class="group-fields">
             <%= f.input :name, label: t(".name"), required: true,
               input_html: {class: "input-text long-input"} %>
@@ -35,12 +39,6 @@
             <%= f.input :address, as: :text, label: t(".address"),
               input_html: {class: "input-text long-input"} %>
           </div>
-          <% if @course.periods.present? %>
-            <div class="group-fields checkboxs-schedules">
-              <%= f.label t".time_schedules", html_options: {class: "abc"} %>
-              <%= f.collection_check_boxes :periods, @course.periods.map{|p| [p.id, "#{p.start_time.strftime('%I:%M%p')} - #{p.end_time.strftime('%I:%M%p')}"]}, :first, :last, include_hidden: false, class: "checkbox_time" %>
-            </div>
-            <% end %>
           <%= f.submit t(".submit"), class: "btn-submit" %>
         <% end %>
       </div>

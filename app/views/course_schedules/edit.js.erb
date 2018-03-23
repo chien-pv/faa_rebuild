@@ -1,0 +1,3 @@
+$('.render-form-registration')
+  .html('<%= j render "courses/modal_list_schedules", newest_schedules: @course.course_schedules.load_by_course_schedule %>');
+$('.registration-modal').modal('show');

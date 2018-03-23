@@ -1,5 +1,5 @@
 class TemporaryRegistrationsController < ApplicationController
-  before_action :find_course, only: :new
+  before_action :find_course, only: [:new, :create]
 
   def new
     @temporary_registration = @course.temporary_registrations.build

@@ -6,23 +6,13 @@
     </div>
     <div class="modal-body">
       <div class="intro-box">
-        <h3><%= registration.course_schedule.course.name %></h3>
+        <h3><%= @course.name %></h3>
         <label><%= t ".duration" %></label>
-        <p>
-          <%= load_schedule_time_inline registration.course_schedule.day1,
-            registration.course_schedule.start_time1, registration.course_schedule.end_time1 %>,
-          <%= load_schedule_time_inline registration.course_schedule.day2,
-            registration.course_schedule.start_time2, registration.course_schedule.end_time2 %>,
-          <%= load_schedule_time_inline registration.course_schedule.day3,
-            registration.course_schedule.start_time3, registration.course_schedule.end_time3 %>
-        </p>
         <span><%= load_register_time registration.course_schedule %></span>
       </div>
-
       <div class="registration-form">
         <%= simple_form_for registration, remote: true do |f| %>
-          <%= f.input :course_schedule_id, as: :hidden,
-            input_html: {value: registration.course_schedule.id} %>
+          <%= hidden_field_tag :course, @course.slug %>
           <div class="group-fields">
             <%= f.input :name, label: t(".name"), required: true,
               input_html: {class: "input-text long-input"} %>
@@ -39,9 +29,55 @@
             <%= f.input :address, as: :text, label: t(".address"),
               input_html: {class: "input-text long-input"} %>
           </div>
+          <label><%= t ".choose_schedule" %>(*)</label>
+          <span class="help-block" id="errors-chooseschedule"></span>
+          <div class="list-course opening-time table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th><%= t ".schedule_time" %></th>
+                  <th><%= t ".time_learn" %></th>
+                  <th><%= t ".deadline" %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% newest_schedules.each do |newest_schedule| %>
+                  <tr class="to-choose-shedule" data-id="<%= newest_schedule.id %>"
+                    id="checkbox-click-<%= newest_schedule.id %>">
+                    <td class="checbox-tag">
+                      <%= f.radio_button :course_schedule_id, newest_schedule.id,
+                        class: "radio-group checked-#{newest_schedule.id}" %>
+                      <ul class="detail-time">
+                        <li>
+                          <i class="fa fa-clock-o" aria-hidden="true"></i>
+                          <%= t "day_of_week.#{CourseSchedule::DAY_OF_WEEK[newest_schedule.day1]}" %>
+                          <%= load_schedule_time_without_day newest_schedule.start_time1, newest_schedule.end_time1 %>
+                        </li>
+                        <li>
+                          <i class="fa fa-clock-o" aria-hidden="true"></i>
+                          <%= t "day_of_week.#{CourseSchedule::DAY_OF_WEEK[newest_schedule.day2]}" %>
+                          <%= load_schedule_time_without_day newest_schedule.start_time2, newest_schedule.end_time2 %>
+                        </li>
+                        <li>
+                          <i class="fa fa-clock-o" aria-hidden="true"></i>
+                          <%= t "day_of_week.#{CourseSchedule::DAY_OF_WEEK[newest_schedule.day3]}" %>
+                          <%= load_schedule_time_without_day newest_schedule.start_time3, newest_schedule.end_time3 %>
+                        </li>
+                      </ul>
+                    </td>
+                    <td class="vertical-align"><%= load_register_time newest_schedule %></td>
+                    <td class="vertical-align">
+                      <%= l newest_schedule.deadline_date, format: :day_month_year %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
           <%= f.submit t(".submit"), class: "btn-submit" %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+<%= javascript_include_tag "choose_shedule" %>

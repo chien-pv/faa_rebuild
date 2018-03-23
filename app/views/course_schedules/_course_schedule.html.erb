@@ -20,7 +20,7 @@
     </td>
     <td>
       <% if schedule.is_opening? %>
-        <%= link_to new_registration_path(schedule: schedule.slug),
+        <%= link_to new_registration_path(course: schedule.course.slug, schedule: schedule.slug),
           class: "btn-reg", remote: true do %>
           <span><%= t ".register_now" %></span>
         <% end %>

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   resources :registrations, only: :create
   get "dang-ky-lop-hoc", to: "registrations#new", as: :new_registration
   resources :news, only: [:index, :show], path: "tin-tuc"
-  resources :course_schedules, only: [:index, :show], path: "lich-khai-giang"
+  resources :course_schedules, only: [:index, :show, :edit], path: "lich-khai-giang"
   resources :temporary_registrations, only: :create
   get "dang-ky-khoa-hoc", to: "temporary_registrations#new", as: :new_temporary_registration
 

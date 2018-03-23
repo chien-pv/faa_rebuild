@@ -34,7 +34,7 @@
         </div>
         <div class="detail-class">
           <%= render "course_header", course: @course,
-            newest_schedule: @course.newest_schedule %>
+            newest_schedules: @course.course_schedules, newest_schedule: @course.newest_schedule %>
           <div class="description">
             <%= markdown @course.content %>
           </div>
