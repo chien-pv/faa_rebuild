@@ -17,18 +17,22 @@ module CourseHelper
   end
 
   def load_schedule_time_inline day, start_time, end_time
-    t("day_of_week.#{CourseSchedule::DAY_OF_WEEK[day]}") + ": " +
-    l(start_time, format: :hour_minute) + " - " +
-    l(end_time, format: :hour_minute)
+    if start_time.present? && end_time.present?
+      t("day_of_week.#{CourseSchedule::DAY_OF_WEEK[day]}") + ": " +
+      l(start_time, format: :hour_minute) + " - " +
+      l(end_time, format: :hour_minute)
+    end
   end
 
   def load_schedule_time_in_list day, start_time, end_time
-    day_tag = content_tag :label, t("day_of_week.#{CourseSchedule::DAY_OF_WEEK[day]}")
-    time_tag = content_tag :span do
-                  l(start_time, format: :hour_minute) + " - " +
-                  l(end_time, format: :hour_minute)
-                end
-    content_tag :li, day_tag + time_tag
+    if start_time.present? && end_time.present?
+      day_tag = content_tag :label, t("day_of_week.#{CourseSchedule::DAY_OF_WEEK[day]}")
+      time_tag = content_tag :span do
+                    l(start_time, format: :hour_minute) + " - " +
+                    l(end_time, format: :hour_minute)
+                  end
+      content_tag :li, day_tag + time_tag
+    end
   end
 
   def set_class_active course_schedule, schedule
@@ -77,5 +81,9 @@ module CourseHelper
     else
       image_tag Settings.image_default.default, class: "img wth-100 #{css_class}"
     end
+  end
+
+  def check_time_blank? start_time, end_time
+    start_time.present? && end_time.present?
   end
 end
