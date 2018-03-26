@@ -1345,7 +1345,7 @@ textarea {
 }
 
 .detail-class .full-info .datetime .detail-time {
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .detail-class .full-info .datetime .detail-time li label {
@@ -1375,7 +1375,7 @@ textarea {
 }
 
 .detail-class .full-info .right-col {
-  text-align: center;
+  //text-align: center;
 }
 
 .detail-class .full-info .right-col .price {
@@ -2394,4 +2394,30 @@ textarea {
     margin-left: auto;
     margin-right: auto;
   }
+}
+.vertical-align {
+  vertical-align: middle !important;
+}
+.place-schedule {
+  width: 38%;
+}
+.list-course table th {
+  font-size: 11px !important;
+}
+.registration-modal .modal-body .list-box {
+  padding: 15px;
+  background-color: #f7f7f7;
+  border-bottom: 1px dashed #dddddd;
+}
+.checbox-tag {
+  min-width: 10px !important;
+}
+.radio-group {
+  display: none;
+}
+.checkbox-click {
+  background-color: #cff1e4;
+}
+.to-choose-shedule {
+  cursor: pointer;
 }

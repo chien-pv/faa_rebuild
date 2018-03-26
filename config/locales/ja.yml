@@ -128,6 +128,7 @@ ja:
       comming_soon: "間も無く開催します。"
       condition: "十分な12人の学生が登録すればオープンクラス"
       registed: "登録された開業医"
+      view: "Chi tiết"
     course_schedules:
       schedules: "クラスは登録できます"
       duration: "勉強の時間"
@@ -145,6 +146,12 @@ ja:
       not_found: "コースが見つかりません"
     course:
       readmore: "続きを見る"
+    modal_list_schedules:
+      deadline: "登録締切日"
+      time_learn: "勉強の時間"
+      place: "場所"
+      schedule_time: "Lịch học"
+      heading: "Các lớp cùng khóa"
   feedbacks:
     new:
       title: "問い合わせ"
@@ -194,6 +201,14 @@ ja:
       address: "アドレス"
       submit: "登録"
       duration: "勉強の時間"
+      deadline: "登録締切日"
+      time_learn: "勉強の時間"
+      schedule_time: "Lịch học"
+      choose_schedule: "あなたに合ったクラスを選んでください"
+    form_registration_schedules:
+      heading: "コースを登録する"
+      duration: "勉強の時間"
+      submit: "登録"
     create:
       success: "コース登録に成功"
       fail: "コース登録に失敗しました"

@@ -1,3 +1,8 @@
 <div class="modal fade registration-modal" id="regbox">
-  <%= render "registrations/form", registration: registration %>
+  <% if params[:schedule] %>
+    <%= render "registrations/form_registration_schedules", registration: registration %>
+  <% else %>
+    <%= render "registrations/form", registration: registration,
+      newest_schedules: @course.course_schedules.load_by_course_schedule %>
+  <% end %>
 </div>

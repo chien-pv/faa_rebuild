@@ -28,6 +28,7 @@ class CourseSchedule < ApplicationRecord
 
   scope :newest, ->{order start_date: :desc}
   scope :load_by_course, -> course_id{newest.where course_id: course_id}
+  scope :load_by_course_schedule, -> {where "DATE(deadline_date) >= ?", Date.current}
 
   delegate :name, to: :course, prefix: true, allow_nil: true
   delegate :cost, to: :course, prefix: true, allow_nil: true

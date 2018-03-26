@@ -5,6 +5,9 @@
   $('html,body').scrollTop(0);
 <% elsif flash[:danger].present? %>
   $.growl.error({title: '', message: '<%= flash[:danger] %>'});
-  $('.registration-modal').html('<%= j render partial: "registrations/form", locals: {registration: @registration} %>');
+  console.log("1231231");
+  $('#errors-choose-schedule').html('<%= t "registrations.form_registration_schedules.choose_schedule_error" %>');
+  $('.registration-modal').html('<%= j render partial: "registrations/form",
+    locals: {registration: @registration, newest_schedules: @course.course_schedules} %>');
   $('.registration-modal').modal('show');
 <% end %>
