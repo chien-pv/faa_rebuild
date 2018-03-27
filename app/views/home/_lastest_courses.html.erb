@@ -6,13 +6,13 @@
         <% courses.each do |course| %>
           <div class="i-class">
             <div class="media">
-              <%= link_to load_link(course) do %>
+              <%= link_to course_path(course) do %>
                 <%= load_course_image course, :avatar, "image-w278-h203" %>
               <% end %>
             </div>
             <div class="info">
               <h3 class="name-class">
-                <%= link_to course.name, load_link(course) %>
+                <%= link_to course.name, course_path(course) %>
               </h3>
               <p class="date">
                 <%= load_register_time course.newest_schedule %></p>
