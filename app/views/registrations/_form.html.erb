@@ -8,7 +8,7 @@
       <div class="intro-box">
         <h3><%= @course.name %></h3>
         <label><%= t ".duration" %></label>
-        <span><%= load_register_time registration.course_schedule %></span>
+        <span><%= t "course_schedules.index.coming_soon" %></span>
       </div>
       <div class="registration-form">
         <%= simple_form_for registration, remote: true do |f| %>
@@ -29,8 +29,13 @@
             <%= f.input :address, as: :text, label: t(".address"),
               input_html: {class: "input-text long-input"} %>
           </div>
-          <label><%= t ".choose_schedule" %>(*)</label>
-          <span class="help-block" id="errors-chooseschedule"></span>
+          <div class="group-fields">
+            <label class="control-label text required" id="chooses-chedule">
+              <abbr>*</abbr><%= t ".choose_schedule" %>
+            </label>
+            <span class="errors-chooses-chedule" id="errors-chooseschedule"></span>
+            <label class="control-label text required note-infor"><%= t ".note" %></label>
+          </div>
           <div class="list-course opening-time table-responsive">
             <table class="table table-bordered">
               <thead>
@@ -45,7 +50,7 @@
                   <tr class="to-choose-shedule" data-id="<%= newest_schedule.id %>"
                     id="checkbox-click-<%= newest_schedule.id %>">
                     <td class="checbox-tag">
-                      <%= f.radio_button :course_schedule_id, newest_schedule.id,
+                      <%= check_box_tag "course_schedule_ids[]", newest_schedule.id, false,
                         class: "radio-group checked-#{newest_schedule.id}" %>
                       <ul class="detail-time">
                         <li>

@@ -245,8 +245,9 @@ vi:
       time_learn: "Thời gian học"
       schedule_time: "Lịch học"
       choose_schedule: "Vui lòng chọn lớp học phù hợp với bạn"
+      note: "Click chuột vào lịch học bên dưới để chọn hoặc bỏ chọn lớp học"
     form_registration_schedules:
-      choose_schedule_error: "Vui lòng chọn khóa học"
+      choose_schedule_error: "chưa chọn khóa học"
       heading: "Đăng ký khóa học"
       duration: "Thời gian học"
       submit: "Đăng ký"

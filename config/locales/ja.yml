@@ -205,7 +205,9 @@ ja:
       time_learn: "勉強の時間"
       schedule_time: "Lịch học"
       choose_schedule: "あなたに合ったクラスを選んでください"
+      note: "下の学校カレンダーをクリックして、クラスを選択または選択解除してください"
     form_registration_schedules:
+      choose_schedule_error: "コースが選択されていない"
       heading: "コースを登録する"
       duration: "勉強の時間"
       submit: "登録"
