@@ -14,21 +14,27 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    @registration = Registration.new registration_params
-    if @registration.save
-      flash.now[:success] = t ".success"
-    else
-      flash.now[:danger] = t ".fail"
+    ActiveRecord::Base.transaction do
+      params[:course_schedule_ids].each do |course_schedule_id|
+        @registration = Registration.new registration_params.merge!(course_schedule_id: course_schedule_id)
+        if @registration.save
+          flash.now[:success] = t ".success"
+        else
+          flash.now[:danger] = t ".fail"
+        end
+      end
+      respond_to do |format|
+        format.js
+      end
     end
-    respond_to do |format|
-      format.js
-    end
+  rescue
+    flash.now[:danger] = t ".fail"
   end
 
   private
 
   def registration_params
-    params.require(:registration).permit :course_schedule_id, :name, :email,
+    params.require(:registration).permit :name, :email,
       :address, :phone
   end
 

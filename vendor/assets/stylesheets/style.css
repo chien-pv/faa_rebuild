@@ -2421,3 +2421,9 @@ textarea {
 .to-choose-shedule {
   cursor: pointer;
 }
+.errors-chooses-chedule {
+  color: #a94442;
+}
+.note-infor {
+  color: #3ab991;
+}
