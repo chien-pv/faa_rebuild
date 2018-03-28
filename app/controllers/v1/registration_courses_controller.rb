@@ -1,6 +1,6 @@
 class V1::RegistrationCoursesController < V1::ApiController
   before_action :load_registration_course, only: [:destroy, :update]
-  before_action :peding_registration_filter, only: :update
+  # before_action :peding_registration_filter, only: :update
 
   def index
     search_word = params[:query] || ""
@@ -21,15 +21,20 @@ class V1::RegistrationCoursesController < V1::ApiController
   end
 
   def update
-    if @registration_course.update_attribute(:status, params[:status])
-      SendEmailJob.perform_later @registration_course, params[:email_content],
-        params[:status]
-      response_success t(".save_success"),
-        RegistrationSerializer.new(@registration_course)
+    if @registration_course.update(comment: params[:comment])
+      response_success t(".delete_success"), @registration_course
     else
-      response_error t(".save_failed"),
-        @registration_course.errors.full_messages
+      response_error t(".delete_failed"), @registration_course.errors.full_messages
     end
+    # if @registration_course.update_attribute(:status, params[:status])
+    #   SendEmailJob.perform_later @registration_course, params[:email_content],
+    #     params[:status]
+    #   response_success t(".save_success"),
+    #     RegistrationSerializer.new(@registration_course)
+    # else
+    #   response_error t(".save_failed"),
+    #     @registration_course.errors.full_messages
+    # end
   end
 
   def destroy

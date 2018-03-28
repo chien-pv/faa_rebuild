@@ -35,6 +35,7 @@ class RegistrationCourseIndex extends React.Component {
     this.courseInputChange = this.courseInputChange.bind(this);
     this.scheduleInputChange = this.scheduleInputChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.onEditHandle = this.onEditHandle.bind(this);
   }
 
   // handleDeleted(id, message) {
@@ -71,6 +72,32 @@ class RegistrationCourseIndex extends React.Component {
         }
       });
     }
+  }
+
+  onEditHandle(e){
+    let new_registration_courses = this.state.registration_courses
+     .filter((item) => item.id == e.target.id)
+     .map(item => item.comment = e.target.value);
+    this.setState(new_registration_courses);
+
+    let formData = new FormData();
+    formData.append("comment", e.target.value);
+    // console.log(e.target.name);
+    $(e.target.id).val(e.target.value);
+    axios.put(`/v1/registration_courses/${e.target.id}.json`, formData,
+        {
+          headers: {'X-CSRF-Token': csrfToken, 'Authorization': this.props.authenticity_token},
+          responseType: 'JSON'
+        }
+      )
+      .then((response) => {
+        const {status, message, content} = response.data;
+        if(status === 200) {
+          // this.props.handleDeleted(content.id, message);
+        } else {
+          $.growl.error({message: message});
+        }
+      });
   }
 
   cellButton(cell, row, enumObject, rowIndex) {
@@ -143,6 +170,16 @@ class RegistrationCourseIndex extends React.Component {
     return localDateString
   }
 
+  cellTextArea(cell, row, enumObject, rowIndex) {
+      return (
+         <textarea
+            id={row.id}
+            name={row.id}
+            onChange={this.onEditHandle.bind(this)} value={cell} >
+          </textarea>
+      )
+   }
+
 
   render() {
     const {formatMessage} = this.props.intl;
@@ -196,14 +233,15 @@ class RegistrationCourseIndex extends React.Component {
               </tbody>
             </table>*/}
             <BootstrapTable data={this.state.registration_courses} striped hover condensed exportCSV>
-              <TableHeaderColumn width='14%' dataField="name" isKey={true} dataSort={true} filter={ { type: 'TextFilter'} } >{formatMessage(defaultMessages.adminRegistrationCoursesName)}</TableHeaderColumn>
-              <TableHeaderColumn width='14%' dataField="email" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesEmail)}</TableHeaderColumn>
-              <TableHeaderColumn width='14%' dataField="phone" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesPhone)}</TableHeaderColumn>
-              <TableHeaderColumn width='14%' dataField="address" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesAddress)}</TableHeaderColumn>
-              <TableHeaderColumn width='14%' dataField="course_name" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesCourse)}</TableHeaderColumn>
+              <TableHeaderColumn width='10%' dataField="name" isKey={true} dataSort={true} filter={ { type: 'TextFilter'} } >{formatMessage(defaultMessages.adminRegistrationCoursesName)}</TableHeaderColumn>
+              <TableHeaderColumn width='10%' dataField="email" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesEmail)}</TableHeaderColumn>
+              <TableHeaderColumn width='10%' dataField="phone" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesPhone)}</TableHeaderColumn>
+              <TableHeaderColumn width='10%' dataField="address" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesAddress)}</TableHeaderColumn>
+              <TableHeaderColumn width='10%' dataField="course_name" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesCourse)}</TableHeaderColumn>
               <TableHeaderColumn width='10%' dataField="course_schedule_code" dataSort={true} filter={ { type: 'TextFilter'} }>Mã lớp</TableHeaderColumn>
-              <TableHeaderColumn width='15%' dataField="created_at" dataFormat={this.timeFormatter.bind(this)} dataSort={true} filter={ { type: 'DateFilter' } }>{formatMessage(defaultMessages.adminRegistrationCoursesCreated)}</TableHeaderColumn>
-              <TableHeaderColumn width='7%' dataField='id' dataFormat={this.cellButton.bind(this)}></TableHeaderColumn>
+              <TableHeaderColumn width='10%' dataField="created_at" dataFormat={this.timeFormatter.bind(this)} dataSort={true} filter={ { type: 'DateFilter' } }>{formatMessage(defaultMessages.adminRegistrationCoursesCreated)}</TableHeaderColumn>
+              <TableHeaderColumn width='12%' dataField="comment" dataFormat={this.cellTextArea.bind(this)}>Note</TableHeaderColumn>
+              <TableHeaderColumn width='3%' dataField='id' dataFormat={this.cellButton.bind(this)}></TableHeaderColumn>
             </BootstrapTable>
           </div>
           <Pagination page={this.state.page}
