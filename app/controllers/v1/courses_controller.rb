@@ -8,7 +8,7 @@ class V1::CoursesController < V1::ApiController
         Course.update course_id, on_slider_index: true
       end
     end
-    on_slider_index = Course.find_by(on_slider_index: true).id
+    on_slider_index = Course.find_by(on_slider_index: true).try(:id)
     courses = Course.page(page).per Settings.admin_page.per_page
     response_success nil, {courses: courses, page: page,
       on_slider_index: on_slider_index, pages: courses.total_pages}
