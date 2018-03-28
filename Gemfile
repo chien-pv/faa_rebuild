@@ -44,7 +44,7 @@ group :development, :test do
   gem "pry-rails"
   gem "pry"
   gem "sshkit-sudo"
-  gem "capistrano", "~> 3.6"
+  gem "capistrano", "3.9.0"
   gem "capistrano-rails"
   gem "capistrano-bundler"
   gem "capistrano-rvm"

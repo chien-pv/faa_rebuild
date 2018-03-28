@@ -30,7 +30,7 @@ class Course < ApplicationRecord
       .order("COUNT(registrations.id) DESC").first Settings.courses.popular
   end
   scope :newest, -> do
-    includes(:newest_schedule, :images)
+    left_joins(:newest_schedule, :images)
       .order("course_schedules.start_date desc nulls last")
   end
   scope :by_words, -> words{where("LOWER(name) LIKE ?", "%#{words.downcase}%")}
