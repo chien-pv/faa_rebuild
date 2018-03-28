@@ -10,7 +10,7 @@ class V1::RegistrationCoursesController < V1::ApiController
     course_schedule_id = params[:course_schedule_id].to_i
 
     q_ransack = Registration.ransack set_params_q search_word, course_id, course_schedule_id
-    registration_courses = q_ransack.result.includes(:course, :course_schedule)
+    registration_courses = q_ransack.result.includes(:course, :course_schedule).order(created_at: :desc)
       .page(page).per Settings.admin_page.per_page
 
     registration_serialize = ActiveModel::SerializableResource
