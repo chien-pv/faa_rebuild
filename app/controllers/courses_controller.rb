@@ -21,7 +21,7 @@ class CoursesController < ApplicationController
   end
 
   def load_course_default
-    Kaminari.paginate_array(Course.newest.to_a).page(params[:page])
+    Kaminari.paginate_array(Course.all.to_a).page(params[:page])
       .per Settings.courses.per_page
   end
 
