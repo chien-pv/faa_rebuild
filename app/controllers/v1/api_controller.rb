@@ -1,8 +1,8 @@
 class V1::ApiController < ApplicationController
+  protect_from_forgery with: :null_session
   skip_before_action :load_courses
   skip_before_action :latest_news
   before_action :authenticate_user_from_token
-  protect_from_forgery with: :null_session
   respond_to :json
 
   JsonResponse::STATUS_CODE.keys.each do |status|
