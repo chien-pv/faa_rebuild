@@ -1,10 +1,9 @@
 class V1::ApiController < ApplicationController
-  skip_before_action :protect_from_forgery
-  protect_from_forgery with: :null_session
+  respond_to :json
   skip_before_action :load_courses
   skip_before_action :latest_news
+  protect_from_forgery with: :null_session
   before_action :authenticate_user_from_token
-  respond_to :json
 
   JsonResponse::STATUS_CODE.keys.each do |status|
     define_method "response_#{status}" do |message = "", content = {}|
