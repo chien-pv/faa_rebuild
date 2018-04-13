@@ -1,0 +1,15 @@
+<div class="group-fields">
+  <label class="control-label text required">
+    <abbr>* </abbr><%= t ".reason" %>
+  </label>
+  <% Registration.list_reasons.each do |key, value| %>
+    <div class="checkbox display-inline-block">
+      <label>
+        <%= check_box_tag "reason[]", value, false, id: "reason-js-#{value}" %>
+        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        <%= t ".#{key}" %>
+      </label>
+    </div>
+  <% end %>
+  </br><span class="errors-chooses-chedule" id="errors-chooses-reason"></span>
+</div>

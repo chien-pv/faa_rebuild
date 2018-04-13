@@ -1,0 +1,34 @@
+<tr class="to-choose-shedule" data-id="<%= newest_schedule.id %>"
+  id="checkbox-click-<%= newest_schedule.id %>">
+  <td class="checbox-tag">
+    <%= check_box_tag "course_schedule_ids[]", newest_schedule.id, false,
+      class: "radio-group checked-#{newest_schedule.id}" %>
+    <ul class="detail-time">
+      <li>
+        <% if check_time_blank?(newest_schedule.start_time1, newest_schedule.end_time1) %>
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <%= t "day_of_week.#{CourseSchedule::DAY_OF_WEEK[newest_schedule.day1]}" %>
+          <%= load_schedule_time_without_day newest_schedule.start_time1, newest_schedule.end_time1 %>
+        <% end %>
+      </li>
+      <li>
+        <% if check_time_blank?(newest_schedule.start_time2, newest_schedule.end_time2) %>
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <%= t "day_of_week.#{CourseSchedule::DAY_OF_WEEK[newest_schedule.day2]}" %>
+          <%= load_schedule_time_without_day newest_schedule.start_time2, newest_schedule.end_time2 %>
+        <% end %>
+      </li>
+      <li>
+        <% if check_time_blank?(newest_schedule.start_time3, newest_schedule.end_time3) %>
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <%= t "day_of_week.#{CourseSchedule::DAY_OF_WEEK[newest_schedule.day3]}" %>
+          <%= load_schedule_time_without_day newest_schedule.start_time3, newest_schedule.end_time3 %>
+        <% end %>
+      </li>
+    </ul>
+  </td>
+  <td class="vertical-align"><%= load_register_time newest_schedule %></td>
+  <td class="vertical-align">
+    <%= l newest_schedule.deadline_date, format: :day_month_year %>
+  </td>
+</tr>

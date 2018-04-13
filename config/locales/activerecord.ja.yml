@@ -38,6 +38,8 @@ ja:
             address:
               blank: "空白にすることはできません"
               too_long: "長すぎる（最大255文字）"
+            reason:
+              blank: "空白にすることはできません"
         certification:
           attributes:
             name:

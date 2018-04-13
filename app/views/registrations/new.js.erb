@@ -1,3 +1,8 @@
-$('.render-form-registration')
-  .html('<%= j render "registrations/modal", registration: @registration %>');
-$('.registration-modal').modal('show');
+<% if @registration %>
+  $('.render-form-registration')
+    .html('<%= j render partial: "registrations/modal", locals: {registration: @registration,
+    hash_course_schedules: @hash_course_schedules} %>');
+  $('.registration-modal').modal('show');
+<% else %>
+  $.growl.error({title: '', message: '<%= flash[:danger] %>'});
+<% end %>

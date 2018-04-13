@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321032343) do
+ActiveRecord::Schema.define(version: 20180413063342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(version: 20180321032343) do
     t.index ["deleted_at"], name: "index_admins_on_deleted_at", using: :btree
     t.index ["email"], name: "index_admins_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "branches", force: :cascade do |t|
+    t.string   "name"
+    t.text     "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "course_periods", force: :cascade do |t|
@@ -66,6 +73,8 @@ ActiveRecord::Schema.define(version: 20180321032343) do
     t.text     "place"
     t.string   "code"
     t.datetime "deleted_at"
+    t.integer  "branch_id"
+    t.index ["branch_id"], name: "index_course_schedules_on_branch_id", using: :btree
     t.index ["course_id"], name: "index_course_schedules_on_course_id", using: :btree
     t.index ["deleted_at"], name: "index_course_schedules_on_deleted_at", using: :btree
     t.index ["slug"], name: "index_course_schedules_on_slug", unique: true, using: :btree
@@ -165,6 +174,7 @@ ActiveRecord::Schema.define(version: 20180321032343) do
     t.datetime "updated_at",         null: false
     t.datetime "deleted_at"
     t.string   "comment"
+    t.text     "reason"
     t.index ["course_schedule_id"], name: "index_registrations_on_course_schedule_id", using: :btree
     t.index ["deleted_at"], name: "index_registrations_on_deleted_at", using: :btree
   end
@@ -202,6 +212,7 @@ ActiveRecord::Schema.define(version: 20180321032343) do
 
   add_foreign_key "course_periods", "courses"
   add_foreign_key "course_periods", "periods"
+  add_foreign_key "course_schedules", "branches"
   add_foreign_key "course_schedules", "courses"
   add_foreign_key "news", "admins"
   add_foreign_key "registrations", "course_schedules"

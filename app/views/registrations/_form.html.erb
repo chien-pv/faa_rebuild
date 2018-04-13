@@ -29,9 +29,10 @@
             <%= f.input :address, as: :text, label: t(".address"),
               input_html: {class: "input-text long-input"} %>
           </div>
+          <%= render "list_reason_choice" %>
           <div class="group-fields">
             <label class="control-label text required" id="chooses-chedule">
-              <abbr>*</abbr><%= t ".choose_schedule" %>
+              <abbr>* </abbr><%= t ".choose_schedule" %>
             </label>
             <span class="errors-chooses-chedule" id="errors-chooseschedule"></span>
             <label class="control-label text required note-infor"><%= t ".note" %></label>
@@ -46,41 +47,15 @@
                 </tr>
               </thead>
               <tbody>
-                <% newest_schedules.each do |newest_schedule| %>
-                  <tr class="to-choose-shedule" data-id="<%= newest_schedule.id %>"
-                    id="checkbox-click-<%= newest_schedule.id %>">
-                    <td class="checbox-tag">
-                      <%= check_box_tag "course_schedule_ids[]", newest_schedule.id, false,
-                        class: "radio-group checked-#{newest_schedule.id}" %>
-                      <ul class="detail-time">
-                        <li>
-                          <% if check_time_blank?(newest_schedule.start_time1, newest_schedule.end_time1) %>
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <%= t "day_of_week.#{CourseSchedule::DAY_OF_WEEK[newest_schedule.day1]}" %>
-                            <%= load_schedule_time_without_day newest_schedule.start_time1, newest_schedule.end_time1 %>
-                          <% end %>
-                        </li>
-                        <li>
-                          <% if check_time_blank?(newest_schedule.start_time2, newest_schedule.end_time2) %>
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <%= t "day_of_week.#{CourseSchedule::DAY_OF_WEEK[newest_schedule.day2]}" %>
-                            <%= load_schedule_time_without_day newest_schedule.start_time2, newest_schedule.end_time2 %>
-                          <% end %>
-                        </li>
-                        <li>
-                          <% if check_time_blank?(newest_schedule.start_time3, newest_schedule.end_time3) %>
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <%= t "day_of_week.#{CourseSchedule::DAY_OF_WEEK[newest_schedule.day3]}" %>
-                            <%= load_schedule_time_without_day newest_schedule.start_time3, newest_schedule.end_time3 %>
-                          <% end %>
-                        </li>
-                      </ul>
-                    </td>
-                    <td class="vertical-align"><%= load_register_time newest_schedule %></td>
-                    <td class="vertical-align">
-                      <%= l newest_schedule.deadline_date, format: :day_month_year %>
+                <% hash_course_schedules.each do |key, schedules| %>
+                  <tr>
+                    <td colspan="3" class="clear-td">
+                      <% if schedules.first.branch %>
+                        <%= schedules.first.branch_name %>
+                      <% end %>
                     </td>
                   </tr>
+                  <%= render partial: "schedule", collection: schedules, as: :newest_schedule %>
                 <% end %>
               </tbody>
             </table>

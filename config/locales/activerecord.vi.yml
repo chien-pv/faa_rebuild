@@ -38,6 +38,8 @@ vi:
             address:
               blank: "không được để trống"
               too_long: "quá dài (tối đa 255 ký tự)"
+            reason:
+              blank: "không được để trống"
         certification:
           attributes:
             name:

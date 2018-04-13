@@ -16,6 +16,7 @@ vi:
       contact: "Liên hệ"
       more_tool: "Các công cụ khác"
       education: "Quản lý đào tạo"
+      hotline: "Hotline: "
     footer:
       our_courses: "Các khóa học"
       ruby: "Ruby"
@@ -232,6 +233,14 @@ vi:
       introduction: "Giới thiệu bản thân"
       now: "hiện nay"
   registrations:
+    list_reason_choice:
+      reason: "Bạn biết thông tin khóa học này qua"
+      choose_reason: "Chọn lý do"
+      facebook: "Facebook"
+      friend: "Bạn bè"
+      google: "Google"
+      viblo: "Viblo"
+      other: "Khác"
     form:
       heading: "Đăng ký khóa học"
       course: "Khóa học"
@@ -251,6 +260,10 @@ vi:
       heading: "Đăng ký khóa học"
       duration: "Thời gian học"
       submit: "Đăng ký"
+      name: "Họ tên"
+      email: "Thư điện tử"
+      phone: "Số điện thoại"
+      address: "Địa chỉ"
     create:
       success: "Đăng ký khóa học thành công"
       fail: "Đăng ký khóa học thất bại"

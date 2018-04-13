@@ -21,6 +21,7 @@
 
       <div class="registration-form">
         <%= simple_form_for registration, remote: true do |f| %>
+          <%= hidden_field_tag :course, @course.slug %>
           <%= f.input :course_schedule_id, as: :hidden,
             input_html: {value: registration.course_schedule.id} %>
           <div class="group-fields">
@@ -39,6 +40,7 @@
             <%= f.input :address, as: :text, label: t(".address"),
               input_html: {class: "input-text long-input"} %>
           </div>
+          <%= render "list_reason_choice" %>
           <%= f.submit t(".submit"), class: "btn-submit" %>
         <% end %>
       </div>

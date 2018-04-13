@@ -12,6 +12,7 @@ ja:
       news: "イベント"
       contact: "問い合わせ"
       more_tool: "その他のツール"
+      hotline: "Hotline: "
     footer:
       our_courses: "プログラミング・コース"
       ruby: "Ruby"
@@ -192,6 +193,14 @@ ja:
       introduction: "自己紹介"
       now: "今"
   registrations:
+    list_reason_choice:
+      reason: "Bạn biết thông tin khóa học này qua"
+      choose_reason: "Chọn lý do"
+      facebook: "Facebook"
+      friend: "Bạn bè"
+      google: "Google"
+      viblo: "Viblo"
+      other: "Khác"
     form:
       heading: "コースを登録する"
       course: "コース"
@@ -211,6 +220,10 @@ ja:
       heading: "コースを登録する"
       duration: "勉強の時間"
       submit: "登録"
+      name: "Họ tên"
+      email: "Thư điện tử"
+      phone: "Số điện thoại"
+      address: "Địa chỉ"
     create:
       success: "コース登録に成功"
       fail: "コース登録に失敗しました"
