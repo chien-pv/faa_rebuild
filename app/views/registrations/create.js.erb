@@ -1,17 +1,43 @@
-<% if params[:course_schedule_ids] %>
-  <% if flash[:success].present? %>
-    $.growl.notice({title: '', message: '<%= flash[:success] %>'});
-    $('.registration-modal').modal('hide');
-    $('#mainbody').html('<%= j render partial: "registrations/registration_success" %>')
-    $('html,body').scrollTop(0);
-  <% elsif flash[:danger].present? %>
+<% if @course %>
+  <% if @registration.invalid? %>
     $.growl.error({title: '', message: '<%= flash[:danger] %>'});
-    $('.registration-modal').html('<%= j render partial: "registrations/form",
-      locals: {registration: @registration, newest_schedules: @course.course_schedules.load_by_course_schedule} %>');
-    $('.registration-modal').modal('show');
+    <% if params[:registration][:course_schedule_id].present? %>
+      $('.registration-modal').html('<%= j render partial: "registrations/form_registration_schedules",
+        locals: {registration: @registration} %>');
+    <% else %>
+      $('.registration-modal').html('<%= j render partial: "registrations/form",
+        locals: {registration: @registration, hash_course_schedules: @hash_course_schedules} %>');
+      <% if params[:course_schedule_ids].blank? %>
+        $('#errors-chooseschedule').html('<%= t "registrations.form_registration_schedules.choose_schedule_error" %>');
+        $('#chooses-chedule').addClass('errors-chooses-chedule');
+      <% elsif params[:course_schedule_ids].is_a? Array %>
+        <% params[:course_schedule_ids].each do |id| %>
+          $('.checked-<%= id %>').prop('checked', true);
+          $('#checkbox-click-<%= id %>').addClass('checkbox-click');
+        <% end %>
+      <% end %>
+    <% end %>
+  <% elsif @registration.valid? %>
+    <%  if flash[:success].present? %>
+      $.growl.notice({title: '', message: '<%= flash[:success] %>'});
+      $('.registration-modal').modal('hide');
+      $('html,body').scrollTop(0);
+    <% elsif params[:registration][:course_schedule_id].blank? %>
+      <% if params[:course_schedule_ids].blank? %>
+        $('#errors-chooseschedule').html('<%= t "registrations.form_registration_schedules.choose_schedule_error" %>');
+        $('#chooses-chedule').addClass('errors-chooses-chedule');
+      <% end %>
+    <% end %>
+  <% elsif flash[:danger].present? %>
+      $.growl.error({title: '', message: '<%= flash[:danger] %>'});
+  <% end %>
+  <% if params[:reason].blank? %>
+    $('#errors-chooses-reason').html('<%= t "activerecord.errors.models.registration.attributes.reason.blank" %>');
+  <% elsif params[:reason].is_a? Array %>
+    <% params[:reason].each do |id| %>
+      $('#reason-js-<%= id %>').prop('checked', true);
+    <% end %>
   <% end %>
 <% else %>
   $.growl.error({title: '', message: '<%= flash[:danger] %>'});
-  $('#errors-chooseschedule').html('<%= t "registrations.form_registration_schedules.choose_schedule_error" %>');
-  $('#chooses-chedule').addClass('errors-chooses-chedule');
 <% end %>

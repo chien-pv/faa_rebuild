@@ -4,6 +4,7 @@ class CourseSchedule < ApplicationRecord
 
   has_many :registrations, dependent: :destroy
   belongs_to :course
+  belongs_to :branch
 
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :finders]
@@ -34,6 +35,7 @@ class CourseSchedule < ApplicationRecord
   delegate :cost, to: :course, prefix: true, allow_nil: true
   delegate :technique, to: :course, prefix: true, allow_nil: true
   delegate :category, to: :course, prefix: true, allow_nil: true
+  delegate :name, to: :branch, prefix: true, allow_nil: true
 
   def is_opening?
     self.start_date >= Date.today

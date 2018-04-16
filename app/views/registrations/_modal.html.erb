@@ -3,6 +3,6 @@
     <%= render "registrations/form_registration_schedules", registration: registration %>
   <% else %>
     <%= render "registrations/form", registration: registration,
-      newest_schedules: @course.course_schedules.load_by_course_schedule %>
+      hash_course_schedules: hash_course_schedules %>
   <% end %>
 </div>

@@ -23,8 +23,12 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_record_not_found
-    flash[:danger] = t ".not_found"
-    redirect_to root_path
+    if request.xhr?
+      flash.now[:danger] = t ".not_found"
+    else
+      flash[:danger] = t ".not_found"
+      redirect_to root_path
+    end
   end
 
   private
