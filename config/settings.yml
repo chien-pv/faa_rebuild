@@ -69,3 +69,4 @@ course_schedules:
 admin_page:
   per_page: 10
   page_default: 1
+expires_cookie: 5

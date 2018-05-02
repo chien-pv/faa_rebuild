@@ -15,7 +15,7 @@
 //= require webpack-bundle
 //= require jquery.turbolinks
 //= require bootstrap-sprockets
-
+//= require cable
 //= require_tree ../../../vendor/assets/javascripts/
 
 $(document).ready(function(){

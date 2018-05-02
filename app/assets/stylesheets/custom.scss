@@ -96,3 +96,56 @@
 .checkbox label input[type="checkbox"]:disabled + .cr {
   opacity: .5;
 }
+
+.disable-btn {
+  background-color: darkgrey !important;
+}
+
+.custom-nav {
+  background-color: #f3f3f2 !important;
+}
+@media(min-width:768px) {
+  .custom-nav {
+    top: 51px;
+    border-right: 1px solid #cccccc;
+    border-radius: 0;
+    overflow-y: auto;
+    background-color: #f3f3f2;
+    overflow-x: hidden;
+    padding-bottom: 40px;
+    bottom: 0px;
+  }
+
+  .custom-nav>li>a {
+    width: 225px;
+  }
+
+  .custom-nav li a:hover,
+  .custom-nav li a:focus {
+    outline: none;
+    background-color: #cccccc !important;
+  }
+}
+
+.custom-nav>li>ul {
+  padding: 0;
+}
+
+.list-message-scroll {
+  height: 450px;
+  overflow-y: scroll;
+}
+
+.room-header {
+  padding: 5px;
+  background-color: #f2f2f2;
+  margin-bottom: 5px;
+}
+
+.unreply-room {
+  background-color: red;
+}
+
+.pad-0 {
+  padding: 0px !important;
+}

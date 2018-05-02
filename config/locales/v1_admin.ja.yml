@@ -82,3 +82,7 @@ ja:
         delete_success: "削除されました"
         delete_failed: "削除に失敗しました"
         not_found: "Không tìm thấy bản đăng kí"
+    messages:
+      create:
+        save_failed: "Gửi tin nhắn thất bại"
+        not_found_room: "Không tìm thấy phòng này"

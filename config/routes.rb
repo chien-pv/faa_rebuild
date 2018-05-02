@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => "/cable"
+
   devise_for :admins, controllers: {sessions: "sessions"}, skip: :registrations
   root "home#index"
   get "tags/:tag", to: "news#index", as: :tag
@@ -17,6 +19,8 @@ Rails.application.routes.draw do
     resources :newses
     resources :registration_courses
     resources :temporary_registrations, only: [:index, :destroy, :update]
+    resources :chat_rooms, only: [:index, :show]
+    resources :messages, only: [:create]
   end
 
   namespace :admin do
@@ -33,6 +37,8 @@ Rails.application.routes.draw do
   resources :news, only: [:index, :show], path: "tin-tuc"
   resources :course_schedules, only: [:index, :show, :edit], path: "lich-khai-giang"
   resources :temporary_registrations, only: :create
+  resources :chat_rooms, only: [:create, :show]
+  resources :messages, only: :create
   get "dang-ky-khoa-hoc", to: "temporary_registrations#new", as: :new_temporary_registration
 
   devise_scope :admin do

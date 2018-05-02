@@ -55,6 +55,12 @@ class Sidebar extends React.Component {
               &nbsp;{formatMessage(defaultMessages.adminSidebarTemporaryRegistration)}
             </Link>
           </li>
+          <li>
+            <Link to="/admin/chat_rooms/1?reload=true">
+              <i className="fa fa-fw fa-commenting-o"/>
+              &nbsp;{formatMessage(defaultMessages.adminSidebarChatRoom)}
+            </Link>
+          </li>
         </ul>
       </div>
     );

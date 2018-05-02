@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :load_courses
   before_action :latest_news
+  before_action :load_messages
 
   before_action :set_locale
 
@@ -28,6 +29,12 @@ class ApplicationController < ActionController::Base
     else
       flash[:danger] = t ".not_found"
       redirect_to root_path
+    end
+  end
+
+  def load_messages
+    if cookies[:room_id].present?
+      @messages = Message.messages_in_room(cookies[:room_id].to_i).order_asc
     end
   end
 
