@@ -61,7 +61,7 @@ export default class MessageNew extends React.Component {
             value={this.state.message} onChange={handleInputChange.bind(this)}
             required="required"/>
           <button type="submit" className="btn btn-primary">
-            {formatMessage(defaultMessages.adminMessagesSend)}
+            "Gửi"
           </button>
         </div>
         <input type="hidden" ref="authenticity_token" value={csrfToken}/>
