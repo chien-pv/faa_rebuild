@@ -1,13 +1,13 @@
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
     def connect
-      current_admin = find_current_admin
-      if current_admin.present?
-        logger.add_tags "ActionCable", current_admin.email
-      else
-        find_verified_room
-        logger.add_tags "ActionCable", @room.email
-      end
+      # current_admin = find_current_admin
+      # if current_admin.present?
+      #   logger.add_tags "ActionCable", current_admin.email
+      # else
+      #   find_verified_room
+      #   logger.add_tags "ActionCable", @room.email
+      # end
     end
 
     protected
