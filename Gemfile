@@ -39,7 +39,7 @@ gem "paranoia"
 gem "sitemap_generator"
 gem "simple_token_authentication", "~> 1.0"
 gem "activerecord-import"
-gem "redis"
+gem "redis", "~> 3.0"
 
 group :development, :test do
   gem "byebug", platform: :mri
