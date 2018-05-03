@@ -154,10 +154,6 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    gon (6.2.0)
-      actionpack (>= 3.0)
-      multi_json
-      request_store (>= 1.0)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     inflecto (0.0.2)
@@ -266,8 +262,6 @@ GEM
       rails (>= 3.2)
       rainbow (~> 2.2)
     redcarpet (3.4.0)
-    request_store (1.4.1)
-      rack (>= 1.4)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -363,7 +357,6 @@ DEPENDENCIES
   font-awesome-rails
   foreman
   friendly_id
-  gon
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks
