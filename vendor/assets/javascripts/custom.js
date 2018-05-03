@@ -93,4 +93,12 @@ $(document).ready(function() {
     $('html, body').animate({scrollTop:0}, '2000');
     return false;
   });
+
+  $('.js-chat-toggle').click(function(){
+    $('.js-chat-active').toggleClass('active');
+    var current_scroll = $(".chat-body").scrollTop();
+    if(current_scroll == 0 && current_scroll < $('#list-messages').height()){
+      $(".chat-body").scrollTop($('#list-messages').height());
+    }
+  });
 });

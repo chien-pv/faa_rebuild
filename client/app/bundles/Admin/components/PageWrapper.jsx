@@ -3,7 +3,10 @@ import PageHeader from './PageHeader.jsx';
 import CourseList from './courses/CourseList';
 import EditCourse from './courses/EditCourse';
 import NewCourse from './courses/NewCourse';
+import MessageNew from './messages/MessageNew'
 import UserList from './users/UserList';
+import ChatRoomList from './chat_rooms/ChatRoomList';
+import ChatRoomShow from './chat_rooms/ChatRoomShow';
 import EditUser from './users/EditUser';
 import NewUser from './users/NewUser';
 import User from './users/User';
@@ -44,6 +47,8 @@ export default class PageWrapper extends React.Component {
             <Route exact path="/admin/course_schedules/:id/edit" render={({match}) => <CourseScheduleEdit match={match} authenticity_token={this.props.authenticity_token} />}/>
             <Route exact path="/admin/course_schedules/new" render={({match}) => <CourseScheduleNew match={match} authenticity_token={this.props.authenticity_token} />}/>
             <Route exact path="/admin/temporary_registrations" render={() => <TemporaryRegistrationIndex authenticity_token={this.props.authenticity_token} />}/>
+            <Route exact path="/admin/chat_rooms/:id" render={({match}) => <ChatRoomShow match={match} authenticity_token={this.props.authenticity_token} />}/>
+            <Route exact path="/admin/messages/new" render={({match}) => <MessageNew match={match} authenticity_token={this.props.authenticity_token} />}/>
           </Switch>
         </div>
       </div>

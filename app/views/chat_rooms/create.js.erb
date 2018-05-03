@@ -1,0 +1,9 @@
+<% if @room.id %>
+  $('.chat-body').html('<%= j render "layouts/chat_body" %>');
+  $('.chat-form').html('<%= j render "messages/form" %>');
+  $('.chat-form').append('<%= javascript_include_tag "chat_channel" %>');
+<% elsif flash[:danger].present? %>
+  $.growl.error({title: '', message: '<%= flash[:danger] %>'});
+<% else %>
+  $('.chat-body').html('<%= j render partial: "chat_rooms/form", locals: {chat_room: @room} %>');
+<% end %>

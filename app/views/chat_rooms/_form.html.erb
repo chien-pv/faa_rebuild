@@ -1,0 +1,23 @@
+<%= simple_form_for chat_room, id: "room-form", remote: true do |f| %>
+  <div class="group-fields row">
+    <div class="col-md-10 col-md-offset-1">
+      <%= f.input :name, label: t(".name"), required: true,
+        class: "input-text long-input" %>
+    </div>
+  </div>
+  <div class="group-fields row">
+    <div class="col-md-10 col-md-offset-1">
+      <%= f.input :email, label: t(".email"), required: true,
+        class: "input-text long-input" %>
+    </div>
+  </div>
+  <div class="group-fields row">
+    <div class="col-md-10 col-md-offset-1">
+      <%= f.input :phone, label: t(".phone"), required: true,
+        class: "input-text long-input" %>
+    </div>
+  </div>
+  <div class="form-actions col-md-offset-1">
+    <%= f.button :submit, t(".submit"), class: "btn btn-primary" %>
+  </div>
+<% end %>

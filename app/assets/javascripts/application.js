@@ -13,7 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
+//= require jquery.cookie
 //= require bootstrap-sprockets
+//= require cable
+//= require_tree ./channels
 
 //= require_tree ../../../vendor/assets/javascripts/
 

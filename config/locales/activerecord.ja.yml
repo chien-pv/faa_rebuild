@@ -133,3 +133,20 @@ ja:
             address:
               blank: "空白にすることはできません"
               too_long: "長すぎる（最大255文字）"
+        chat_room:
+          attributes:
+            email:
+              blank: "空白にすることはできません"
+              invalid: "無効な形式"
+              too_long: "長すぎる（最大127文字）"
+            phone:
+              blank: "空白にすることはできません"
+              invalid: "無効な形式"
+              too_long: "長すぎる（最大15文字）"
+            name:
+              blank: "空白にすることはできません"
+              too_long: "長すぎる（最大127文字）"
+        message:
+          attributes:
+            message:
+              blank: "空白にすることはできません"

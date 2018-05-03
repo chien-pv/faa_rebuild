@@ -23,6 +23,7 @@ vi:
       registration_course: "Đăng ký khóa học"
       course_schedule: "Lớp học"
       temporary_registration: "Đăng ký lớp chưa mở"
+      chat_room: "Hỗ trợ trực tuyến"
     page_header:
       dashboard: "Dashboard"
     certifications:
@@ -156,3 +157,9 @@ vi:
       place: "Địa điểm học"
     temporary_registrations:
       title: "Quản lý đăng kí các lớp chưa mở"
+    chat_rooms:
+      title: "Hỗ trợ"
+      not_found: "Không tìm thấy"
+    messages:
+      message: "Nhập nội dung"
+      send: "Gửi"

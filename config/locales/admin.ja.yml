@@ -23,6 +23,7 @@ ja:
       registration_course: "コース参加申し込み"
       course_schedule: "クラス"
       temporary_registration: "次期のコースの予約"
+      chat_room: "Hỗ trợ trực tuyến"
     page_header:
       dashboard: "ダッシュボード"
     certifications:
@@ -155,3 +156,9 @@ ja:
       place: "place"
     temporary_registrations:
       title: "Quản lý đăng kí các lớp chưa mở"
+    chat_rooms:
+      title: "Hỗ trợ"
+      not_found: "Không tìm thấy"
+    messages:
+      message: "Nhập nội dung"
+      send: "Gửi"

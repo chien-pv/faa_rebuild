@@ -32,6 +32,12 @@ ja:
       copyright: "© 2017 Framgia Awesome Academy - All rights reserved."
     application_devise:
       login: "Login"
+    chat_body:
+      hello: "Chào bạn! Bạn cần hỗ trợ gì ạ"
+    chatbox:
+      title: "Hỗ trợ trực tuyến"
+      online: "Online"
+      offline: "Offline"
   home:
     index:
       index_title: "ホームページ"
@@ -323,3 +329,16 @@ ja:
       home: "ホームページ"
       schedule: "スケジュール"
       detail: "Chi tiết"
+  chat_rooms:
+    save_errors: "Đã xảy ra lỗi"
+    form:
+      name: "Họ tên"
+      email: "Thư điện tử"
+      phone: "Số điện thoại"
+      submit: "Xác nhận"
+  messages:
+    form:
+      message: "Nhập nội dung..."
+      send: "Gửi"
+      please_fill_information: "Vui lòng điền thông tin vào form trên"
+      click_to_send: "Nhấn đề gửi tin nhắn"

@@ -1,0 +1,5 @@
+<%= form_for Message.new, html: {class: "chat-form clearfix"}, remote: true do |f| %>
+  <%= f.text_field :message, placeholder: t(".message"), required: true, class: "chat-field" %>
+  <%= f.button t(".send"), class: "chat-submit #{class_button_disable(is_blank_cookies_room?)}",
+    disabled: is_blank_cookies_room?, title: title_button_send(is_blank_cookies_room?) %>
+<% end %>

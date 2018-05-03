@@ -1,0 +1,26 @@
+<div class="chat-toggle js-chat-active js-chat-toggle">
+  <div class="dots">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+  <h5 class="text"><%= t ".title" %></h5>
+</div>
+
+<div class="chatbox js-chat-active">
+  <div class="chat-header clearfix">
+    <button class="chat-chevron js-chat-toggle">
+      <img class="chat-chevron-icon" src="/assets/icon-chevron-down.png" alt="">
+    </button>
+    <span class="chat-online active"><%= t ".online" %></span>
+    <span class="chat-offline"><%= t ".offline" %></span>
+    <h5 class="chat-heading"><%= t ".title" %></h5>
+  </div>
+  <div class="chat-body">
+    <%= render "layouts/chat_body" %>
+  </div>
+  <div class="chat-form">
+    <%= render "messages/form" %>
+  </div>
+</div>
+<%= javascript_include_tag "chat_channel" %>

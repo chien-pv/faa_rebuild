@@ -68,3 +68,7 @@ vi:
       destroy:
         not_found: "Không tìm thấy lớp học"
         delete_failed: "Không xóa được lớp học"
+    messages:
+      create:
+        save_failed: "Gửi tin nhắn thất bại"
+        not_found_room: "Không tìm thấy phòng này"
