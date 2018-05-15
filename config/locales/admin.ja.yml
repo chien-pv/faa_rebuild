@@ -140,6 +140,8 @@ ja:
       rejected: "Đã từ chối"
       contact: "Đồng ý"
       reject: "Từ chối"
+      created: "Thời gian đăng ký"
+      reason: "Lý do biết"
     schedule:
       start_date: "開始日"
       end_date: "終了日"

@@ -175,7 +175,7 @@ class RegistrationCourseIndex extends React.Component {
          <textarea
             id={row.id}
             name={row.id}
-            onChange={this.onEditHandle.bind(this)} value={cell} >
+            onChange={this.onEditHandle.bind(this)} value={cell || ""} >
           </textarea>
       )
    }
@@ -237,9 +237,10 @@ class RegistrationCourseIndex extends React.Component {
               <TableHeaderColumn width='10%' dataField="email" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesEmail)}</TableHeaderColumn>
               <TableHeaderColumn width='10%' dataField="phone" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesPhone)}</TableHeaderColumn>
               <TableHeaderColumn width='10%' dataField="address" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesAddress)}</TableHeaderColumn>
-              <TableHeaderColumn width='10%' dataField="course_name" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesCourse)}</TableHeaderColumn>
-              <TableHeaderColumn width='10%' dataField="course_schedule_code" dataSort={true} filter={ { type: 'TextFilter'} }>Mã lớp</TableHeaderColumn>
-              <TableHeaderColumn width='10%' dataField="created_at" dataFormat={this.timeFormatter.bind(this)} dataSort={true} filter={ { type: 'DateFilter' } }>{formatMessage(defaultMessages.adminRegistrationCoursesCreated)}</TableHeaderColumn>
+              <TableHeaderColumn width='8%' dataField="course_name" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesCourse)}</TableHeaderColumn>
+              <TableHeaderColumn width='8%' dataField="course_schedule_code" dataSort={true} filter={ { type: 'TextFilter'} }>Mã lớp</TableHeaderColumn>
+              <TableHeaderColumn width='8%' dataField="created_at" dataFormat={this.timeFormatter.bind(this)} dataSort={true}>{formatMessage(defaultMessages.adminRegistrationCoursesCreated)}</TableHeaderColumn>
+              <TableHeaderColumn width='10%' dataField="reason_name" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesReason)}</TableHeaderColumn>
               <TableHeaderColumn width='12%' dataField="comment" dataFormat={this.cellTextArea.bind(this)}>Note</TableHeaderColumn>
               <TableHeaderColumn width='3%' dataField='id' dataFormat={this.cellButton.bind(this)}></TableHeaderColumn>
             </BootstrapTable>
