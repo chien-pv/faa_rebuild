@@ -19,7 +19,11 @@ Rails.application.routes.draw do
     resources :newses
     resources :registration_courses
     resources :temporary_registrations, only: [:index, :destroy, :update]
-    resources :chat_rooms, only: [:index, :show]
+    resources :chat_rooms, only: [:index, :show] do
+      collection do
+        get :not_reply_yet
+      end
+    end
     resources :messages, only: [:create]
   end
 

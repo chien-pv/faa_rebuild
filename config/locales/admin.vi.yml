@@ -164,3 +164,6 @@ vi:
     messages:
       message: "Nhập nội dung"
       send: "Gửi"
+      show_all: "View all messages"
+      title: "Messages"
+      item: "New"

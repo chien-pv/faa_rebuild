@@ -33,7 +33,7 @@ export default class Main extends React.Component {
     return (
       <IntlProvider locale="vi" messages={translations} defaultLocale="vi">
         <div id="wrapper">
-          <Navbar/>
+          <Navbar authenticity_token={this.props.authen}/>
           <PageWrapper courses={courses} authenticity_token={this.props.authen}/>
         </div>
       </IntlProvider>

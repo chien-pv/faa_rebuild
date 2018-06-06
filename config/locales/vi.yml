@@ -38,6 +38,7 @@ vi:
       login: "Login"
     chat_body:
       hello: "Chào bạn! Bạn cần hỗ trợ gì ạ"
+      admin_busy: "Chào bạn! Vui lòng đợi trong ít phút"
     chatbox:
       title: "Hỗ trợ trực tuyến"
       online: "Online"
