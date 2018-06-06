@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require cable
 //= require_tree ./channels
+//= require social-share-button
 
 //= require_tree ../../../vendor/assets/javascripts/
 
@@ -27,4 +28,6 @@ $(document).ready(function(){
       'container':'body'
     });
   });
+
+  $('.fb-comments').attr('data-href', window.location.href );
 });

@@ -9,6 +9,7 @@ class HomeTabs < ViewObject
     [home_tab,
     courses_tab,
     schedule_tab,
+    news_tab,
     contacts_tab].compact
   end
 
