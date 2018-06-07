@@ -24,14 +24,7 @@
           </ul>
         </div>
 
-        <div class="news col-md-5 col-sm-5">
-          <h3><%= t ".news" %></h3>
-          <ul class="menu">
-            <% @latest_news.each do |news| %>
-              <li><%= link_to news.title, news_path(news) %></li>
-            <% end %>
-          </ul>
-        </div>
+
       </div>
     </div>
   </div>

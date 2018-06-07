@@ -1,15 +1,40 @@
 <div id="component" class="col-md-9">
   <div class="detail-article">
     <article>
-      <h2><%= news.title %></h2>
-      <div class="top-article">
-        <span class="create-date">
-          <%= l news.created_at, format: :date_month_year_concise %>
-        </span>
+      <div class="row">
+        <div class="col-md-3 col-sm-3">
+          <%= load_image news, "full-width", "/media/new-1.jpg" %>
+        </div>
+        <div class="col-md-9 col-sm-9">
+          <h2><%= news.title %></h2>
+          <div class="top-article">
+            <span class="create-date">
+              <%= l news.created_at, format: :date_month_year_concise %>
+            </span>
+          </div>
+        </div>
       </div>
+
       <div class="content">
         <%= markdown news.content %>
       </div>
     </article>
+    <div class="social_share">
+      <%= social_share_button_tag(news.title) %>
+    </div>
+
+    <div class="row">
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.0&appId=213332442606223&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+      <div class="fb-comments" data-href="" data-width="100%" data-numposts="5"></div>
+    </div>
   </div>
 </div>
+
+
