@@ -41,6 +41,7 @@ gem "simple_token_authentication", "~> 1.0"
 gem "activerecord-import"
 gem "redis", "~> 3.0"
 gem "social-share-button"
+gem "truncate_html"
 
 group :development, :test do
   gem "byebug", platform: :mri

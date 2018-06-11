@@ -11,6 +11,10 @@ export default class News extends React.Component {
     this.onDeleteHandle = this.onDeleteHandle.bind(this);
   }
 
+  componentDidMount() {
+    $('html, body').removeAttr('style');
+  }
+
   onDeleteHandle(e) {
     let {id} = this.props;
     if (confirm("Delete the item?") == true) {
