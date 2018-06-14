@@ -28,7 +28,11 @@
 
 .mde {
   padding: 8px;
-  margin: 10px auto;
-  width: 600px;
+  width: 100%;
   border: 1px solid rgba(0,0,0,.125);
+}
+
+.mde textarea{
+  font-family: Arial;
+  font-size: 13px;
 }

@@ -11,7 +11,8 @@
       </h3>
       <p class="date"><%= l news.created_at, format: :date_month_year_concise %></p>
       <p class="short-content">
-        <%= markdown(truncate news.content, length: Settings.news.short_content) %>
+        <!-- <%= markdown(truncate news.content, length: Settings.news.short_content) %> -->
+        <%= ckeditor(truncate_html news.content, length: Settings.news.short_content, omission: "...")%>
       </p>
     </div>
   </div>

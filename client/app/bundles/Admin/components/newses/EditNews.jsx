@@ -12,6 +12,7 @@ import {ReactMde, ReactMdeCommands} from 'react-mde';
 import 'react-mde/lib/styles/react-mde.css';
 import 'react-mde/lib/styles/react-mde-command-styles.css';
 import 'react-mde/lib/styles/markdown-default-theme.css';
+import CKEditorCustom from './CKEditorCustom'
 
 const csrfToken = ReactOnRails.authenticityToken();
 
@@ -28,6 +29,15 @@ class EditNews extends React.Component {
       errors: [],
       url: "",
     };
+
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(evt){
+    var newContent = evt.editor.getData();
+    this.setState({
+      content: {text: newContent}
+    })
   }
 
   handleFormSubmit(e) {
@@ -150,10 +160,10 @@ class EditNews extends React.Component {
                       {formatMessage(defaultMessages.adminNewsesContent)}
                     </label>
                     <div className="mde">
-                      <ReactMde
-                        value={this.state.content}
-                        onChange={this.contentChangeHandle.bind(this)}
-                        commands={commands} />
+                      <CKEditorCustom
+                        content={this.state.content.text}
+                        onChange={this.onChange}
+                      />
                     </div>
                   </div>
                 </div>
