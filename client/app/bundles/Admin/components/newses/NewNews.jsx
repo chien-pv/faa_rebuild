@@ -12,7 +12,8 @@ import {ReactMde, ReactMdeCommands} from 'react-mde';
 import 'react-mde/lib/styles/react-mde.css';
 import 'react-mde/lib/styles/react-mde-command-styles.css';
 import 'react-mde/lib/styles/markdown-default-theme.css';
-import CKEditorCustom from './CKEditorCustom'
+import CKEditorCustom from './CKEditorCustom';
+import CKEditor from "react-ckeditor-component";
 
 const csrfToken = ReactOnRails.authenticityToken();
 
@@ -21,6 +22,7 @@ class EditNews extends React.Component {
     super(props);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
 
     this.state = {
       title: "",
@@ -36,7 +38,7 @@ class EditNews extends React.Component {
   onChange(evt){
     var newContent = evt.editor.getData();
     this.setState({
-      content: {text: newContent}
+      content: {text: newContent},
     })
   }
 
@@ -69,6 +71,27 @@ class EditNews extends React.Component {
       .catch(error => {
         console.log(error);
       });
+  }
+
+  uploadImage(event)
+  {
+    const reader = new FileReader()
+    const file = event.currentTarget.files[0]
+    const that = this;
+
+    reader.onloadend = function() {
+      const image = reader.result
+      const content = '<p><img src='+ image +' style="width: 500" /></p>'
+      that.ckeditor.editorInstance.insertHtml(content)
+      that.setState((prevState, props) => {
+        return {content: {text: that.ckeditor.editorInstance.getData()}}
+      })
+    }
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      this.setState({tempImage: ""})
+    }
   }
 
   contentChangeHandle(value) {
@@ -141,9 +164,18 @@ class EditNews extends React.Component {
                       {formatMessage(defaultMessages.adminNewsesContent)}
                     </label>
                     <div className="mde">
-                      <CKEditorCustom
+                      <div className="image-upload">
+                        <input id="insert-image" className="file-input" type="file" onChange={this.uploadImage}></input>
+                      </div>
+
+                      <CKEditor
+                        activeClass="p10"
+                        scriptUrl = "/assets/ckeditor/ckeditor.js"
                         content={this.state.content.text}
-                        onChange={this.onChange}
+                        events={{
+                          "change": this.onChange
+                        }}
+                        ref={(instance) => { this.ckeditor = instance; }}
                       />
                     </div>
                   </div>

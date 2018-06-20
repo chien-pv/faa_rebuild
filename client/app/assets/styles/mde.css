@@ -36,3 +36,7 @@
   font-family: Arial;
   font-size: 13px;
 }
+
+#insert-image{
+  display: none;
+}
