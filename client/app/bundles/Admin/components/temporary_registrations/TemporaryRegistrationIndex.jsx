@@ -8,6 +8,8 @@ import Pagination from '../../utils/Pagination';
 import SearchForm from '../../utils/SearchForm';
 import { BootstrapTable, TableHeaderColumn, InsertButton } from 'react-bootstrap-table';
 import ReactOnRails from 'react-on-rails';
+import SelectedCourse from '../registration_courses/SelectedCourse';
+
 const csrfToken = ReactOnRails.authenticityToken();
 
 class TemporaryRegistrationIndex extends React.Component {
@@ -15,32 +17,42 @@ class TemporaryRegistrationIndex extends React.Component {
   constructor(props, _railsContext) {
     super(props);
     this.state = {
+      courses: [],
+      course_id: 0,
       registration_courses: [],
       email_content: "",
       page: 1,
       pages: 0,
       search_word: "",
+      course_schedule_id: 0,
     };
-    // this.handleDeleted = this.handleDeleted.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.getDataFromApi = this.getDataFromApi.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.onDeleteHandle = this.onDeleteHandle.bind(this);
     this.onEditHandle = this.onEditHandle.bind(this);
+    this.courseInputChange = this.courseInputChange.bind(this);
   }
 
   handlerClickCleanFiltered() {
     this.refs.inStockDate.cleanFiltered();
   }
 
+  courseInputChange(newValue) {
+    this.setState({course_id: newValue, page: 1, course_schedule_id: 0, search_word: ""},
+      () => this.getDataFromApi(1));
+  }
+
   onDeleteHandle(cell) {
     if (confirm("Delete the item?") == true) {
-      axios.delete(`/v1/temporary_registrations/${cell}.json`, null,
+      axios.delete(`/v1/temporary_registrations/${cell}.json`,
         {
-          headers: {'X-CSRF-Token': csrfToken, 'Authorization': this.props.authenticity_token},
-          responseType: 'JSON'
-        }
+          headers: {'Authorization': this.props.authenticity_token},
+        },
+          {
+            responseType: 'JSON'
+          }
       )
       .then((response) => {
         const {status, message, content} = response.data;
@@ -67,7 +79,6 @@ class TemporaryRegistrationIndex extends React.Component {
 
     let formData = new FormData();
     formData.append("comment", e.target.value);
-    // console.log(e.target.name);
     $(e.target.id).val(e.target.value);
     axios.put(`/v1/temporary_registrations/${e.target.id}.json`, formData,
         {
@@ -84,14 +95,6 @@ class TemporaryRegistrationIndex extends React.Component {
         }
       });
   }
-  // handleDeleted(id, message) {
-  //   this.setState({
-  //     registration_courses: this.state.registration_courses.filter(registration_course => {
-  //       return registration_course.id !== id
-  //     })
-  //   });
-  //   $.growl.notice({message: message});
-  // }
 
   handleInputChange(e) {
     this.setState({email_content: e.target.value});
@@ -106,12 +109,13 @@ class TemporaryRegistrationIndex extends React.Component {
       headers: {'Authorization': this.props.authenticity_token},
       params: {
         page: page,
-        query: this.state.search_word
+        query: this.state.search_word,
+        course_id: this.state.course_id,
       }
     })
     .then(response => {
-      const {registration_courses, page, pages} = response.data.content;
-      this.setState({registration_courses, page, pages});
+      const {registration_courses, courses, page, pages} = response.data.content;
+      this.setState({registration_courses, courses, page, pages});
     })
     .catch(error => {
       console.log(error);
@@ -122,9 +126,8 @@ class TemporaryRegistrationIndex extends React.Component {
     this.getDataFromApi(page);
   }
 
-  handleSearch(data, search_word) {
-    const {registration_courses, page, pages} = data;
-    this.setState({registration_courses, page, pages, search_word});
+  handleSearch(event) {
+    this.setState({search_word: event.target.value, page: 1}, () => this.getDataFromApi(1));
   }
 
   cellButton(cell, row, enumObject, rowIndex) {
@@ -144,7 +147,7 @@ class TemporaryRegistrationIndex extends React.Component {
          <textarea
             id={row.id}
             name={row.id}
-            onChange={this.onEditHandle.bind(this)} value={cell} >
+            onChange={this.onEditHandle.bind(this)} value={cell || ''} >
           </textarea>
       )
    }
@@ -167,45 +170,30 @@ class TemporaryRegistrationIndex extends React.Component {
     const options = {
       insertBtn: this.createCustomInsertButton
     };
-    console.log(this.state.registration_courses);
     return (
       <div className="row">
         <div className="col-md-12">
           <div className="certifications-table-header">
             <h2>{formatMessage(defaultMessages.adminTemporaryRegistrationsTitle)}</h2>
           </div>
-          {/*<div className="clearfix">
+          <div className="clearfix">
             <div className="col-md-4">
-              <SearchForm handleSearch={this.handleSearch}
-                search_url='/v1/temporary_registrations.json'/>
+              <input onChange={this.handleSearch}
+                type="text"
+                value={this.state.search_word}
+                className="form-control"
+                placeholder={formatMessage(defaultMessages.adminSearchHolder)}
+                ref="query" />
             </div>
-          </div>
-          <div className="empty-space marg-lg-b20"></div>*/}
-          <div className="table-responsive col-md-12">
-            {/*<table className="table table-bordered table-hover table-striped">
-              <thead>
-                <tr>
-                  <th>{formatMessage(defaultMessages.adminRegistrationCoursesName)}</th>
-                  <th>{formatMessage(defaultMessages.adminRegistrationCoursesEmail)}</th>
-                  <th>{formatMessage(defaultMessages.adminRegistrationCoursesPhone)}</th>
-                  <th>{formatMessage(defaultMessages.adminRegistrationCoursesAddress)}</th>
-                  <th>{formatMessage(defaultMessages.adminRegistrationCoursesCourse)}</th>
-                  <th>{formatMessage(defaultMessages.adminRegistrationCoursesCreated)}</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  this.state.registration_courses.map(registration_course => (
-                    <TemporaryRegistration {...registration_course}
-                      key={registration_course.id}
-                      handleDeleted={this.handleDeleted}/>
-                  ))
-                }
-              </tbody>
-            </table>*/}
+            <div className="col-md-4">
+              <SelectedCourse courses={this.state.courses}
+                handleChange={this.courseInputChange} selected={this.state.course_id} />
+            </div>
 
-            <BootstrapTable data={this.state.registration_courses} striped hover condensed pagination  search exportCSV>
+          </div>
+          <div className="empty-space marg-lg-b20"></div>
+          <div className="table-responsive col-md-12">
+            <BootstrapTable data={this.state.registration_courses} striped hover condensed exportCSV>
               <TableHeaderColumn width='10%' dataField="name" isKey={true} dataSort={true} filter={ { type: 'TextFilter'} } >{formatMessage(defaultMessages.adminRegistrationCoursesName)}</TableHeaderColumn>
               <TableHeaderColumn width='20%' dataField="email" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesEmail)}</TableHeaderColumn>
               <TableHeaderColumn width='10%' dataField="phone" dataSort={true} filter={ { type: 'TextFilter'} }>{formatMessage(defaultMessages.adminRegistrationCoursesPhone)}</TableHeaderColumn>
@@ -217,9 +205,12 @@ class TemporaryRegistrationIndex extends React.Component {
               <TableHeaderColumn width='7%' dataField="comment" dataFormat={this.cellTextArea.bind(this)}>Note</TableHeaderColumn>
               <TableHeaderColumn width='3%' dataField='id' dataFormat={this.cellButton.bind(this)}></TableHeaderColumn>
             </BootstrapTable>
-
           </div>
-        </div>
+
+          <Pagination page={this.state.page}
+            pages={this.state.pages}
+            handleChangePage={this.handleChangePage} />
+          </div>
       </div>
     );
   }
