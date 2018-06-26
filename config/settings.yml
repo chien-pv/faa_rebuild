@@ -70,3 +70,5 @@ admin_page:
   per_page: 10
   page_default: 1
 expires_cookie: 5
+chatbot:
+  postion_message: 1

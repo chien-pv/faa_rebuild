@@ -1,3 +1,4 @@
+@import "variables/color";
 .maps {
   width: 100%;
 
@@ -156,4 +157,31 @@
 
 .article-item{
   max-height: 215px;
+}
+
+.messages{
+  max-height: 300px;
+  min-width: 150px;
+  overflow-y: auto;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 300px !important;
+  padding: 2px;
+  text-align: left;
+  list-style: none;
+  background-color: $grey;
+  background-clip: padding-box;
+  border: 1px solid $light-grey;
+  border-radius: 4px;
+}
+
+.dropdown-divider{
+  height: 0;
+  margin: 2px;
+  overflow: hidden;
+  border-top: 1px solid $black-15opacity;
 }

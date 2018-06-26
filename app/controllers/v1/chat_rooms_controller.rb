@@ -1,6 +1,8 @@
 class V1::ChatRoomsController < V1::ApiController
   before_action :load_room, only: [:show, :update]
 
+  include ResponseMessageNotify
+
   def index
     chat_rooms = ChatRoom.newest
     response_success nil, {chat_rooms: chat_rooms}
@@ -9,6 +11,11 @@ class V1::ChatRoomsController < V1::ApiController
   def show
     messages = @chat_room.messages.order_asc
     response_success nil, {messages: messages, chat_room: @chat_room}
+  end
+
+  def not_reply_yet
+    chat_rooms = response_room_and_last_message
+    response_success nil, {chat_rooms: chat_rooms}
   end
 
   private
