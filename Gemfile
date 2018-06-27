@@ -27,7 +27,7 @@ gem "kaminari"
 gem "simple_form"
 gem "foreman"
 gem "redcarpet"
-gem "faker"
+gem "faker" , git: "https://github.com/stympy/faker"
 gem "devise"
 gem "figaro"
 gem "delayed_job_active_record"
@@ -43,6 +43,11 @@ gem "redis", "~> 3.0"
 gem "social-share-button"
 gem "truncate_html"
 
+group :test do
+  gem "shoulda-matchers", "~> 3.0"
+  gem "database_cleaner", "~> 1.5"
+end
+
 group :development, :test do
   gem "byebug", platform: :mri
   gem "pry-rails"
@@ -55,6 +60,10 @@ group :development, :test do
   gem "capistrano3-puma"
   gem "capistrano3-nginx"
   gem "capistrano-upload-config"
+  gem "rspec-rails", "~> 3.7"
+  gem "factory_bot_rails"
+  gem "capybara", "~> 2.5"
+  gem "rails-controller-testing"
 end
 
 group :development do
