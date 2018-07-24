@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="contact col-md-5 col-sm-4">
-          <img src="/images/logo-footer.png">
+          <%= image_tag "images/logo-footer" %>
           <div class="contact-us">
             <p><%= t ".framgia_address" %></p>
             <p><a href="tel:<%= Settings.framgia.phone_number %>">
@@ -11,7 +11,7 @@
             <a href="mailto:<%= Settings.framgia.email %>">
               <%= Settings.framgia.email %></a>
             <a class="social" href="<%= Settings.framgia.facebook %>" target="_blank">
-              <img src="/images/ic-facebook.png"> facebook.com/framgia.awesome.academy</a>
+              <%= image_tag "images/ic-facebook" %>facebook.com/framgia.awesome.academy</a>
           </div>
         </div>
 

@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/stympy/faker
-  revision: b94eda03e8bd2af3ba0a740fbac83170ea1967f4
+  revision: 12dbcda73d5da82ad8e564099278e9019e16b9be
   specs:
-    faker (1.8.7)
+    faker (1.9.1)
       i18n (>= 0.7)
 
 GEM
@@ -46,7 +46,7 @@ GEM
       activemodel (= 5.0.7)
       activesupport (= 5.0.7)
       arel (~> 7.0)
-    activerecord-import (0.24.0)
+    activerecord-import (0.25.0)
       activerecord (>= 3.2)
     activesupport (5.0.7)
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -58,7 +58,7 @@ GEM
     airbrussh (1.3.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (7.1.4)
-    autoprefixer-rails (8.6.5)
+    autoprefixer-rails (9.0.0)
       execjs
     bcrypt (3.1.12)
     bindex (0.5.0)
@@ -232,7 +232,7 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (3.0.2)
-    puma (3.11.4)
+    puma (3.12.0)
     rack (2.0.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -305,7 +305,7 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
-    sass (3.5.6)
+    sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -355,7 +355,7 @@ GEM
     turbolinks-source (5.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.14)
+    uglifier (4.1.16)
       execjs (>= 0.3.0, < 3)
     versionist (1.7.0)
       activesupport (>= 3)
@@ -377,7 +377,7 @@ GEM
     websocket-extensions (0.1.3)
     xpath (3.1.0)
       nokogiri (~> 1.8)
-    yard (0.9.14)
+    yard (0.9.15)
 
 PLATFORMS
   ruby
@@ -445,4 +445,4 @@ DEPENDENCIES
   webpacker_lite
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

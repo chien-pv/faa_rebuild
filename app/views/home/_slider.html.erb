@@ -3,12 +3,9 @@
     <div class="row">
       <div class="left-box col-md-8 col-sm-8">
         <div class="js-slide media-slide">
-          <div class="item"><a href=""><img alt="<%= t ".faa" %>"
-            src="media/banner10.png"></a></div>
-          <div class="item"><a href=""><img alt="<%= t ".faa" %>"
-            src="media/slide-2.jpg"></a></div>
-          <div class="item"><a href=""><img alt="<%= t ".faa" %>"
-            src="media/slide-3.jpg"></a></div>
+          <div class="item"><a href=""><%= image_tag "media/banner10", alt: t(".faa") %></a></div>
+          <div class="item"><a href=""><%= image_tag "media/new-slider-1", alt: t(".faa") %></a></div>
+          <div class="item"><a href=""><%= image_tag "media/new-slider-2", alt: t(".faa") %></a></div>
         </div>
       </div>
 
@@ -16,7 +13,7 @@
         <div class="right-box col-md-4 col-sm-4">
           <div class="box-info">
             <div class="top-banner">
-              <a href="javascript:;"><img alt="<%= t ".faa" %>" src="media/top-banner.jpg"></a>
+              <a href="javascript:;"><%= image_tag "media/top-banner", alt: t(".faa") %></a>
             </div>
             <div class="top-info">
               <h2>
