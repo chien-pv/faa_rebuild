@@ -1,7 +1,7 @@
 <% if message.is_supporter? %>
   <div class="chat-message">
     <div class="chat-avatar">
-      <img class="chat-avatar-img" src="/assets/supporter.png" alt="">
+      <%=image_tag "supporter", class: "chat-avatar-img" %>
     </div>
     <div class="chat-content">
       <div class="chat-content-inner">
@@ -12,7 +12,7 @@
 <% else %>
   <div class="chat-message right">
     <div class="chat-avatar">
-      <img class="chat-avatar-img" src="/assets/customer.png" alt="">
+      <%=image_tag "customer", class: "chat-avatar-img" %>
     </div>
     <div class="chat-content">
       <div class="chat-content-inner">
