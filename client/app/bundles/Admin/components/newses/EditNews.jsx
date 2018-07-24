@@ -189,7 +189,7 @@ class EditNews extends React.Component {
 
                       <CKEditor
                         activeClass="p10"
-                        scriptUrl = "/assets/ckeditor/ckeditor-3a9005911988eee07ecd319b6a2cc7fb7c068fb872427ecb1e34f2e0b9d9d52c.js"
+                        scriptUrl = "/assets/ckeditor/ckeditor.js"
                         content={this.state.content.text}
                         events={{
                           "change": this.onChange
